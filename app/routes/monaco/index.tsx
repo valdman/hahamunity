@@ -18,7 +18,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   const action = formData.get("_action");
   if(action === 'commit') {
-    const file = formData.get('file')?.toString() || '';
+    const file = decodeURI(formData.get('file')?.toString() || '');
     const fileName = formData.get('fileName')?.toString() || '';
     if(!fileName || !file) {
       return;
@@ -38,7 +38,7 @@ export default function Monaco() {
       <button name="_action" value='commit'>
         Commit code
       </button>
-      <input hidden readOnly name="file" value={file} />
+      <input hidden readOnly name="file" value={encodeURI(file || '')} />
       <input hidden readOnly name="fileName" value={fileName} />
     </Form>
    <Editor
