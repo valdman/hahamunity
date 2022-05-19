@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-import { getGitLastMessage } from "~/git";
+import { getGitLastMessage } from "~/git/index.server";
 
 export async function loader() {
 	const message = await getGitLastMessage();
